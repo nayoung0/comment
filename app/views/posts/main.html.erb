@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card bg-gray">
+    <p><strong>글을 작성하세요</strong></p>
+    <form action="/posts" method="post">
+      <div class="form-row  align-items-center">
+        <div class="col-11">
+          <input type="text" name="content" class="form-control" placeholder="내용을 입력하세요" />
+        </div>
+        <div class="col-auto">
+          <input class="btn btn-primary" type="button" value="작성" />  
+        </div>
+      </div>  
+      
+    </form>
+  </div>
+  
+  <div>
+    <% @posts.each do |post| %>
+    <div class="card">
+      <h1 class="card-title"><%= post.content %></h1><br>
+      <div>
+        <form action="/posts/<%= post.id %>/comments" method="post">
+          <div class="form-row  align-items-center">
+            <div class="col-auto">
+              <input type="text" name="content" class="form-control" placeholder="댓글을 입력하세요" />
+            </div>
+            <div class="col-auto">
+              <input class="btn btn-primary" type="button" value="작성" />  
+            </div>
+          </div>  
+        </form>
+        
+        
+        <% post.comments.each do |comment| %>
+          <%= comment.content %><br>
+        <% end %>    
+      </div>
+    </div>
+    <% end %>    
+  </div>
+</div>
